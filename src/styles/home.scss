@@ -1,0 +1,19 @@
+.card{
+    width: 12rem;
+    height: 18rem;
+    font-size: 14px;}
+.row{
+    display: flex;
+}
+
+.col-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 17.333333%;}
+
+    .btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    width: 71px;
+    }
