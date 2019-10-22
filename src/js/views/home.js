@@ -1,67 +1,21 @@
 import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
-
+import { Context } from "../store/appContext";
+import { Consumer } from "../store/appContext";
 export class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			activePlayer: null,
-			pl1Pokemons: [
-				{
-					id: 3,
-					name: "los gomez",
-					players: [
-						{
-							id: 1,
-							name: "pikachu",
-							position: "attacker",
-							image:
-								"https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcReSMs0KSKkKLfXcVZVeF5_g79xlS455yVWIcCZeHSM7sBYNKIKTWL8Pj8TgtVF662bbsOc0mUq0hKxhmRfNrlCvsf59qHFwrfYYtR8n5MRt3xQmcDkdJ45jw&usqp=CAc",
-							attack: 49,
-							defense: 25
-						},
-						{
-							id: 2,
-							name: "charmander",
-							position: "Midfielder",
-							image:
-								"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR443co4-tl5QrXlBJTzG-850ZRLgw1hT1FG2i58i4LarHHZe2Q",
-							attack: 40,
-							defense: 48
-						}
-					]
-				}
-			],
-			cpuPlayers: [
-				{
-					id: 2,
-					name: "enemy",
-					players: [
-						{
-							id: 1,
-							name: "pikachu malo",
-							position: "attacker",
-							image:
-								"https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcReSMs0KSKkKLfXcVZVeF5_g79xlS455yVWIcCZeHSM7sBYNKIKTWL8Pj8TgtVF662bbsOc0mUq0hKxhmRfNrlCvsf59qHFwrfYYtR8n5MRt3xQmcDkdJ45jw&usqp=CAc",
-							attack: 47,
-							defense: 46
-						},
-						{
-							id: 2,
-							name: "charmander malo",
-							position: "Midfielder",
-							image:
-								"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR443co4-tl5QrXlBJTzG-850ZRLgw1hT1FG2i58i4LarHHZe2Q",
-							attack: 40,
-							defense: 48
-						}
-					]
-				}
-			]
+			id: null,
+			attack: null
 		};
 	}
 	render() {
+		const attack = () => {
+			console.log("attack");
+			this.setState({ id: item.id, attack: item.attack });
+		};
 		const startButton = () => {
 			this.setState({ activePlayer: Math.floor(Math.random() * 2) + 1 });
 		};
@@ -80,89 +34,80 @@ export class Home extends React.Component {
 		return (
 			<React.Fragment>
 				<div className="row">
-                 {this.state.pl1Pokemons.players.map(item => {
-                        return (
-					<div className="col-4">
-						<div className="card">
-							<div className="card-header">
-								<img
-									src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcReSMs0KSKkKLfXcVZVeF5_g79xlS455yVWIcCZeHSM7sBYNKIKTWL8Pj8TgtVF662bbsOc0mUq0hKxhmRfNrlCvsf59qHFwrfYYtR8n5MRt3xQmcDkdJ45jw&usqp=CAc"
-									alt="Smiley face"
-									height="50"
-									width="50"
-								/>{" "}
-							</div>
-							<div className="card-body">
-								{" "}
-								<h1>ATTACK</h1>
-								20{" "}
-							</div>
-						</div>
-					</div>
-);
-                }
-                }
+					<Consumer>
+						{({ store, actions }) => {
+							return store.pl1Pokemons.map((item, index) => {
+								return (
+									<div key={index} className="col-4">
+										<div className="card">
+											<div className="card-header">
+												<img src={item.image} alt="Smiley face" height="50" width="50" />{" "}
+												<h1>{item.name}</h1>
+											</div>
+											<div className="card-body">
+												{" "}
+												<h1>ATK {item.attack}</h1> <h1>DFE {item.defense}</h1>
+											</div>
+
+											<button
+												onClick={() => {
+													this.setState({});
+													attack("attack", item.id, item.attack);
+												}}
+												type="button"
+												className={"btn btn-danger btn-sm disabled mr-2"}>
+												ATTK
+											</button>
+											<button type="button" className={"btn btn-primary btn-sm disabled"}>
+												DEF
+											</button>
+										</div>
+									</div>
+								);
+							});
+						}}
+					</Consumer>
 				</div>
-				<button
-					type="button"
-					className={"btn btn-success"}
-					onClick={() => {
-						startButton();
-					}}>
-					PLAY
-				</button>
+
 				<div className="row middleRow">
-					<div className="col-4" />
+					<button
+						type="button"
+						className={"btn btn-success"}
+						onClick={() => {
+							startButton();
+						}}>
+						PLAY
+					</button>
 				</div>
 				<div className="row opponentsRow">
-					<div className="col-4">
-						<div className="card">
-							<div className="card-header">
-								<img
-									src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcReSMs0KSKkKLfXcVZVeF5_g79xlS455yVWIcCZeHSM7sBYNKIKTWL8Pj8TgtVF662bbsOc0mUq0hKxhmRfNrlCvsf59qHFwrfYYtR8n5MRt3xQmcDkdJ45jw&usqp=CAc"
-									alt="Smiley face"
-									height="50"
-									width="50"
-								/>{" "}
-							</div>
-							<div className="card-body">
-								{" "}
-								<h1>ATTACK</h1>
-								20{" "}
-							</div>
-						</div>
-					</div>
-					<div className="col-4">
-						<div className="card">
-							<div className="card-header">
-								<img
-									src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR443co4-tl5QrXlBJTzG-850ZRLgw1hT1FG2i58i4LarHHZe2Q"
-									alt="Smiley face"
-									height="50"
-									width="50"
-								/>{" "}
-							</div>
-							<div className="card-body">attack: 49, defense: 25</div>
-						</div>
-					</div>
-
-					<div className="col-4">
-						<div className="card">
-							<div className="card-header">
-								<img
-									src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcReSMs0KSKkKLfXcVZVeF5_g79xlS455yVWIcCZeHSM7sBYNKIKTWL8Pj8TgtVF662bbsOc0mUq0hKxhmRfNrlCvsf59qHFwrfYYtR8n5MRt3xQmcDkdJ45jw&usqp=CAc"
-									alt="Smiley face"
-									height="50"
-									width="50"
-								/>{" "}
-							</div>
-							<div className="card-body">
-								{" "}
-								<h1>ATTACK</h1>
-								100{" "}
-							</div>
-						</div>
-					</div>
+					<Consumer>
+						{({ store, actions }) => {
+							return store.cpuPlayers.map((item, index) => {
+								return (
+									<div key={index} className="col-4">
+										<div className="card">
+											<div className="card-header">
+												<img src={item.image} alt="Smiley face" height="50" width="50" />{" "}
+												<h1>{item.name}</h1>
+											</div>
+											<div className="card-body">
+												{" "}
+												<h1>ATK {item.attack}</h1> <h1>DFE {item.defense}</h1>
+											</div>
+											<div className="card-footer">
+												<button type="button" className={"btn btn-danger btn-sm disabled mr-2"}>
+													ATTK
+												</button>
+												<button type="button" className={"btn btn-primary btn-sm disabled"}>
+													DEF
+												</button>
+											</div>
+										</div>
+									</div>
+								);
+							});
+						}}
+					</Consumer>
 				</div>
 			</React.Fragment>
 		);
