@@ -12,9 +12,8 @@ export class Home extends React.Component {
 		};
 	}
 	render() {
-		const attack = () => {
+		let attack = () => {
 			console.log("attack");
-			this.setState({ id: item.id, attack: item.attack });
 		};
 		const startButton = () => {
 			this.setState({ activePlayer: Math.floor(Math.random() * 2) + 1 });
@@ -79,6 +78,18 @@ export class Home extends React.Component {
 						PLAY
 					</button>
 				</div>
+				<Consumer>
+					{({ store, actions }) => {
+						{
+							if (this.state.activePlayer === 1) {
+								return <h1>Player 1</h1>;
+							} else if (this.state.activePlayer === 2) {
+								return <h1>Player 2</h1>;
+							}
+						}
+					}}
+				</Consumer>
+
 				<div className="row opponentsRow">
 					<Consumer>
 						{({ store, actions }) => {
