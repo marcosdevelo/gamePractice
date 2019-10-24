@@ -12,15 +12,23 @@ export class Home extends React.Component {
 		};
 	}
 	render() {
-		let attack = () => {
-			console.log("attack");
-		};
 		const startButton = () => {
 			this.setState({ activePlayer: Math.floor(Math.random() * 2) + 1 });
 		};
 		const cpuMove = () => {
 			console.log("cpumove");
+			{
+				setTimeout(function() {
+					cpuAction();
+				}, 5000);
+			}
 		};
+		let cpuAction = () => {
+			console.log("cpuAction");
+			let chooseAction = [attack, defense];
+			let action = chooseAction[Math.floor(Math.random() * chooseAction.length)];
+		};
+
 		const playerMove = () => {
 			console.log("playermove");
 		};
@@ -54,10 +62,10 @@ export class Home extends React.Component {
 													attack("attack", item.id, item.attack);
 												}}
 												type="button"
-												className={"btn btn-danger btn-sm disabled mr-2"}>
+												className={"btn btn-danger btn-sm  mr-2"}>
 												ATTK
 											</button>
-											<button type="button" className={"btn btn-primary btn-sm disabled"}>
+											<button type="button" className={"btn btn-primary btn-sm"}>
 												DEF
 											</button>
 										</div>
@@ -106,7 +114,9 @@ export class Home extends React.Component {
 												<h1>ATK {item.attack}</h1> <h1>DFE {item.defense}</h1>
 											</div>
 											<div className="card-footer">
-												<button type="button" className={"btn btn-danger btn-sm disabled mr-2"}>
+												<button
+													type="button"
+													className={"btn btn-danger btn-sm  mr-2 disabled"}>
 													ATTK
 												</button>
 												<button type="button" className={"btn btn-primary btn-sm disabled"}>
