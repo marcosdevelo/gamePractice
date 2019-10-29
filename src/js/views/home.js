@@ -12,6 +12,19 @@ export class Home extends React.Component {
 		};
 	}
 	render() {
+		let defense = () => {
+			function sumDigits(num) {
+				let sum = 0;
+				let numString = num.toString();
+				for (let i = 0; i < numString.length; i++) {
+					sum += Number(numString[i]);
+				}
+				return sum;
+			}
+			let output = sumDigits(13);
+			console.log(output);
+		};
+
 		const startButton = () => {
 			this.setState({ activePlayer: Math.floor(Math.random() * 2) + 1 });
 		};
@@ -65,7 +78,13 @@ export class Home extends React.Component {
 												className={"btn btn-danger btn-sm  mr-2"}>
 												ATTK
 											</button>
-											<button type="button" className={"btn btn-primary btn-sm"}>
+											<button
+												onClick={() => {
+													this.setState({});
+													defense();
+												}}
+												type="button"
+												className={"btn btn-primary btn-sm"}>
 												DEF
 											</button>
 										</div>
