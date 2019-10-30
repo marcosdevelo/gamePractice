@@ -13,16 +13,21 @@ export class Home extends React.Component {
 	}
 	render() {
 		let defense = () => {
-			function sumDigits(num) {
-				let sum = 0;
-				let numString = num.toString();
-				for (let i = 0; i < numString.length; i++) {
-					sum += Number(numString[i]);
+			for (let i = 1; i < 101; i++) {
+				if (i % 3 === 0) {
+					console.log("Tic");
 				}
-				return sum;
+				{
+					if (i % 5 === 0) {
+						console.log("Toc");
+					}
+					{
+						if (i % 5 === 0 || i % 3 === 0) {
+							console.log("TicToc");
+						}
+					}
+				}
 			}
-			let output = sumDigits(13);
-			console.log(output);
 		};
 
 		const startButton = () => {
