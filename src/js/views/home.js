@@ -13,21 +13,50 @@ export class Home extends React.Component {
 	}
 	render() {
 		let defense = () => {
-			for (let i = 1; i < 101; i++) {
+			let ticToc = 1;
+			for (let i = 1; i < 100; i++) {
 				if (i % 3 === 0) {
 					console.log("Tic");
 				}
+				if (i % 5 === 0) {
+					console.log("Toc");
+				}
 				{
-					if (i % 5 === 0) {
-						console.log("Toc");
-					}
-					{
-						if (i % 5 === 0 || i % 3 === 0) {
-							console.log("TicToc");
-						}
+					if (i % 3 === 0 && i % 5 === 0) {
+						console.log("TicToc");
 					}
 				}
 			}
+			// for (let i = 1; i < 101; i++) {
+			// 	if (i % 3 === 0) {
+			// 		console.log("Tic");
+			// 	}
+			// 	{
+			// 		if (i % 5 === 0) {
+			// 			console.log("Toc");
+			// 		}
+			// 		{
+			// 			if (i % 5 === 0 || i % 3 === 0) {
+			// 				console.log("TicToc");
+			// 			}
+			// 		}
+			// 	}
+			// }
+			// 	function LongestWord(sen) {
+			// 		sen = sen.replace(/[!|#|@|%]+/gi, " ");
+			// 		let strSplit = sen.split(" ");
+			// 		let longestWord = 0;
+			// 		let word = null;
+			// 		for (let i = 0; i < strSplit.length; i++) {
+			// 			if (strSplit[i].length > longestWord) {
+			// 				longestWord = strSplit[i].length;
+			// 				word = strSplit[i];
+			// 			}
+			// 		}
+			// 		return word;
+			// 	}
+			// 	let output = LongestWord("hello!^&*()@# bud@@@!!");
+			// 	console.log(output);
 		};
 
 		const startButton = () => {
